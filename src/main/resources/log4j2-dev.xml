@@ -1,0 +1,51 @@
+
+<Configuration status="WARN">
+    <Properties>
+        <property name="path">logs</property>
+        <property name="filename">demo-auth</property>
+        <property name="app">demo_auth</property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+<!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%X{X-B3-TraceId}] [%X{X-B3-SpanId}] %-5level %logger{36} : %msg%n"/>-->
+            <PatternLayout pattern="%clr{%d{yyyy-MM-dd}T%d{HH:mm:ss.SSSZ}}{faint} %clr{%-5level} %clr{%logger}{cyan} %clr{[${app},%16X{X-B3-TraceId},%16X{X-B3-SpanId}]}{magenta} %clr{[%15.15t]:}{blue} %m%n%wEx"/>
+        </Console>
+        <RollingFile name="RollingFileInfo" fileName="${path}/info.log" filePattern="${path}/${filename}-%d{yyyy-MM-dd}-%i.log">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%X{X-B3-TraceId}] [%X{X-B3-SpanId}] %-5level %logger{36} : %msg%n"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <loggers>
+        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+        <logger name="org.mybatis" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <!--监控系统信息-->
+        <!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。-->
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.apache" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <root level="info">
+            <appender-ref ref="Console"/>
+<!--            <appender-ref ref="Filelog"/>-->
+            <appender-ref ref="RollingFileInfo"/>
+<!--            <appender-ref ref="RollingFileWarn"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+        </root>
+    </loggers>
+
+</Configuration>

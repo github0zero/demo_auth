@@ -1,0 +1,109 @@
+spring:
+  application:
+    name: demo_auth
+  datasource:
+    url: jdbc:mysql://139.155.8.239:3306/demo_auth?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: Idontknow
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 5000
+      time-between-eviction-runs-millis: 30000
+      min-evictable-idle-time-millis: 60000
+      test-on-borrow: false
+      test-while-idle: true
+      validation-query: SELECT 1
+  redis:
+    #    url: redis://:admin@148.70.121.210:6379
+    database: 0
+    host: 139.155.8.239
+    port: 6379
+    password: redis_pswd
+  #    timeout: 2000
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+#  profiles:
+#    active: dev
+
+#  messages:
+#    basename: i18n/messages
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    cache-enabled: true
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8080
+
+logging:
+  config: classpath:log4j2-dev.xml
+  level:
+    cn.qaq.demo: info
+
+#management:
+#  endpoints:
+#    jmx:
+#      exposure:
+#        include: "*"
+#    web:
+#      exposure:
+#        include: "*"
+#  metrics:
+#    export:
+#      datadog:
+#        api-key: ${spring.application.name}
+
+#apollo:
+#  meta: http://148.70.121.210:8080
+#  configService: http://148.70.121.210:8080
+#  bootstrap:
+#    enabled: true
+#    namespace: application
+#app:
+#  id: demo-qaq
+security:
+  oauth2:
+    publickey: -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwIVeBiRQ8M87y8SVuQxj
+      e2M3njBwdxHJLAfjOAHjdK98mKG0UV+OwfPAfWaA47nt01Y3km/4hpbfLV8JRkLc
+      NLJJBTWZT1myjkiqqefF2J86C0v0pKrY+atWaWd4GFaitcwSf+d/ZhfkyhYiRm0o
+      qHfyCtcbSNUDe3vVQ7z3QuzeuqWN0gxVc68UgNzeafiTYgcJAche6MAbrKWCyE4N
+      aBASMOxZ8zQOlRWRLKfTeIxmZVrVNNI8jp3IJae7iZniqaZTBaxlMNZdTOGqhFaT
+      GoB298FIrvNlnWZ/PYhbQjwq3EICEFmDrAJj6dfgN1rJ4a7cOhtaPjHGm7dThIVm
+      /QIDAQAB
+      -----END PUBLIC KEY-----
+    privatekey: -----BEGIN RSA PRIVATE KEY-----
+        MIIEpQIBAAKCAQEAwIVeBiRQ8M87y8SVuQxje2M3njBwdxHJLAfjOAHjdK98mKG0
+        UV+OwfPAfWaA47nt01Y3km/4hpbfLV8JRkLcNLJJBTWZT1myjkiqqefF2J86C0v0
+        pKrY+atWaWd4GFaitcwSf+d/ZhfkyhYiRm0oqHfyCtcbSNUDe3vVQ7z3QuzeuqWN
+        0gxVc68UgNzeafiTYgcJAche6MAbrKWCyE4NaBASMOxZ8zQOlRWRLKfTeIxmZVrV
+        NNI8jp3IJae7iZniqaZTBaxlMNZdTOGqhFaTGoB298FIrvNlnWZ/PYhbQjwq3EIC
+        EFmDrAJj6dfgN1rJ4a7cOhtaPjHGm7dThIVm/QIDAQABAoIBAQCx/1zkTtVrIB9I
+        EdTgR3z/CsfUgTKqVA5soEpLcSuMqeeH8xIVnkUOO8C/8HLAmhoyKGevA8mDHqDv
+        gQvBI3YXXrM2lszNWcBF3xeziXAaDXWMFkj1qmR7yhdV0u1ti0Ra03hTO4VFrlfB
+        JF/CP5C02lk1/pXia9gRZnfSbjcqbtwTEsvsa2Axc2KnxSE4waAhUw6HRvsNVl8J
+        BtNCNc92pK2nRmPAmNZA1kxOVssOqHhr5GtCLXwVpta2fY9iFveQ+Z6oZLU9EMSY
+        1G6BaTxQdmYlOiut4iQt/FvP9UskMGsYikILszdVzCwz3PimMWobfTKD+kpQAdP0
+        nG2Rtnr9AoGBAPV8YaFoYWT1wE8O0901NBxdzkdyfa6VPEKzhcdLJKGi7m96CMs6
+        IJSJMZQOHXYJvjnwRr1rrS3apXvs4pskww4mYSihoMWeNKCgKsQF+Cahe4/WidfC
+        s/jGoYAM+ORosJc8o+F+lcRVEbS91e1+88Y8B97GpJrHKqjuSWPz/6rzAoGBAMjE
+        QTLMghyMzmDhFn2b7X9qc3l6JNhIuh+XQSZ0ffM8VAQzP7t16QIyEIXeVpzEPUEy
+        JevgwBs3dCQYrSv9EMFOe72E3xTnWphc/pdplENOdWfJzlngL7d3nA3YNWjtOgn1
+        jhqYdcONQfi2+ygSYUrd5scYyRGuMjKPMKyAf0JPAoGBAPTfHpAgC87mqO7zjnjA
+        4ntNQz/Xv/DPIm4yn0Z9+UtWuFrwsybtk6Q2+gKC1fZxn5Qxzo6SgwwTZzEnyZ8S
+        W5OYyx/5oeKefkafniks/yyhthxz18omiNmmYWDXD8rfdw9VSO/dEk3mwaO2HVgr
+        Y8WhCgS5x2YxN6eNEh4nPSfrAoGBALUWWByi3GU2GFzICkpIIAOCmB+lLaCskL03
+        5/rwrj58Vufm9gB3jTF+yOqGrqb+VqX8vrmw4nZqIWcBnwmDXN6PlQtP0wv+1feC
+        Qd1+zM2c8kcofukQTtn0mBzgvOQkveoHxCJ3DBnTywK0wXvWgE1QM/23fH1nGz4B
+        bAzcZmz/AoGAAkTX4fHVruMI6Jbt14rhnNlgg/DdAhLOn1XtfL0JMxf6Q02yRs9S
+        VL5NRDGcMv9Uj9gtx4Umm5YNoyGX42sRhFVfB5YnDWSuLN8ny1/g7/ExbBo0Bug6
+        WFOfur/xt+prH9TFDaJa9LJ+BBwlFHgj0q8Avc7qnZ7vfQFH1b831/4=
+        -----END RSA PRIVATE KEY-----
