@@ -47,6 +47,14 @@ logging:
   config: classpath:log4j2-dev.xml
   level:
     cn.qaq.demo: info
+dubbo:
+  cloud:
+    subscribed-services: demo_auth
+  scan:
+    base-packages: cn.qaq.dubbo.service
+  protocol:
+    name: dubbo
+    port: -1
 
 #management:
 #  endpoints:
@@ -68,7 +76,7 @@ logging:
 #    enabled: true
 #    namespace: application
 #app:
-#  id: demo-qaq
+#  id: dubbo-qaq
 security:
   oauth2:
     publickey: -----BEGIN PUBLIC KEY-----
@@ -107,3 +115,4 @@ security:
         VL5NRDGcMv9Uj9gtx4Umm5YNoyGX42sRhFVfB5YnDWSuLN8ny1/g7/ExbBo0Bug6
         WFOfur/xt+prH9TFDaJa9LJ+BBwlFHgj0q8Avc7qnZ7vfQFH1b831/4=
         -----END RSA PRIVATE KEY-----
+

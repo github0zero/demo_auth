@@ -25,7 +25,7 @@
 <!--        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>-->
         <elasticsearch.version>7.0.0</elasticsearch.version>
         <spring-data.version>3.2.5.RELEASE</spring-data.version>
-        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <dependencies>
@@ -43,17 +43,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+        <!--  sprint cloud alibaba -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
         <!--
             oauth2 自2.4版本后集成到spring-security5.x中，或者spring-boot-security2.x中，因此后续版本都注解了@Decrypt
             但在集成的oauth2版本为2.3.4，其中RemoteTokenServices存在bug，在2.4以后的版本中才修复
@@ -136,6 +138,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,9 @@ public class UserDetailsAuthService implements UserDetailsService {
 
     @Autowired
     Environment environment;
+
+    @Autowired
+    TokenEndpoint tokenEndpoint;
 //    @Autowired
 //    PasswordEncoder passwordEncoder;
 
