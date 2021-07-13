@@ -1,6 +1,12 @@
 spring:
   application:
-    name: demo_auth
+    name: demo-auth
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 121.4.127.248:8080
+        port: 8021
+        clientIp: 139.155.8.239
   datasource:
     url: jdbc:mysql://139.155.8.239:3306/demo_auth?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
     username: root
@@ -20,7 +26,7 @@ spring:
   redis:
     #    url: redis://:admin@148.70.121.210:6379
     database: 0
-    host: 139.155.8.239
+    host: 121.4.127.248
     port: 6379
     password: redis_pswd
   #    timeout: 2000
@@ -41,33 +47,37 @@ mybatis-plus:
     map-underscore-to-camel-case: true
 
 server:
-  port: 8080
+  port: 8020
 
 logging:
   config: classpath:log4j2-dev.xml
   level:
-    cn.qaq.demo: info
+    cn.qaq.demo_auth: info
 dubbo:
+  registry:
+    address: nacos://121.4.127.248:8848?namespace=demo-apps-2233
   cloud:
-    subscribed-services: demo_auth
+    subscribed-services: ""
   scan:
     base-packages: cn.qaq.dubbo.service
   protocol:
     name: dubbo
     port: -1
 
-#management:
-#  endpoints:
-#    jmx:
-#      exposure:
-#        include: "*"
-#    web:
-#      exposure:
-#        include: "*"
-#  metrics:
-#    export:
-#      datadog:
-#        api-key: ${spring.application.name}
+management:
+  server:
+    port: 8022
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      datadog:
+        api-key: ${spring.application.name}
 
 #apollo:
 #  meta: http://148.70.121.210:8080
@@ -77,6 +87,7 @@ dubbo:
 #    namespace: application
 #app:
 #  id: dubbo-qaq
+
 security:
   oauth2:
     publickey: -----BEGIN PUBLIC KEY-----

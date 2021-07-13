@@ -65,12 +65,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
 
                 .withClient("client")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+                .secret(passwordEncoder().encode("password"))
+                .authorizedGrantTypes("password","client_credentials")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write")
                 .autoApprove(true)
 //                .redirectUris("resource server")
-                .secret(passwordEncoder().encode("password"))
+
+//                .secret("password")
         ;
 //        clients.withClientDetails();
     }

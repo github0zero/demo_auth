@@ -3,7 +3,7 @@
     <Properties>
         <property name="path">logs</property>
         <property name="filename">demo-auth</property>
-        <property name="app">demo_auth</property>
+        <property name="app">demo-auth</property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">

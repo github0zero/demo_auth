@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 
-@DubboService
+@DubboService(version = "1.0")
 @Component
 public class EnhanceUserDetailsServiceImpl implements EnhanceUserDetailsService {
 
