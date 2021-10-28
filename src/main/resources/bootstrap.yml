@@ -4,6 +4,7 @@ spring:
       config:
         server-addr: 121.4.127.248:8848
         namespace: demo-apps-2233
+        refresh-enabled: true
       #        username: nacos
       #        password: nacos
       discovery:

@@ -5,4 +5,5 @@ import com.alibaba.fastjson.JSONObject;
 
 public interface EnhanceUserDetailsService{
     JSONObject newAccessToken();
+    void newUser(String uname);
 }

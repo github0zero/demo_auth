@@ -55,6 +55,7 @@ logging:
     cn.qaq.demo_auth: info
 dubbo:
   registry:
+#    dubbo 元数据中的地址若不是公网ip，可修改服务器hosts文件，使机器名对应到公网ip
     address: nacos://121.4.127.248:8848?namespace=demo-apps-2233
   cloud:
     subscribed-services: ""
