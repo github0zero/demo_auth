@@ -1,22 +1,17 @@
 package cn.qaq.demo_auth.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Builder
+@TableName("user_details")
 public class UserDetailsEntity {
+    Long id;
     Integer uid;
     String username;
     String password;
     String role;
 
-    public UserDetailsEntity(Integer uid, String username, String password, String role) {
-        this.uid = uid;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
 }

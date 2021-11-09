@@ -1,12 +1,13 @@
 package cn.qaq.demo_auth.mapper;
 
 import cn.qaq.demo_auth.entity.UserDetailsEntity;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface UserDetailsMapper {
+public interface UserDetailsMapper extends BaseMapper<UserDetailsEntity> {
 
     UserDetailsEntity selectUserByName(@Param("username") String username);
 
